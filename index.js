@@ -13,8 +13,9 @@ let chosenWord;
 
 function init() {
     chosenLetters = [];
+    console.log("\n----------------------------------------")
     console.log("Hello! Welcome to Word Guess: Musical Instruments Around The World Edition");
-    console.log("----------------------------------------/n");
+    console.log("----------------------------------------\n");
     gameStart();
 }
 
@@ -59,12 +60,12 @@ function guessWord() {
         .then(data => {
             currentWord.letters.forEach(letter => {
                 letter.verifyLetter(data.letterGuessed);
-                updateLetter.push(letter.grabCharacter());
+                updateLetter.push(letter.showLetter());
             });
             if (numGuesses > 0 && updateLetter.indexOf("_") !== -1) {
                 numGuesses--;
                 if (numGuesses === 0) {
-                    console.log("No more guesses! Better luck next time!");
+                    console.log("Out of guesses! Better luck next time!");
                     continuePrompt();
                 }
                 else {
@@ -74,7 +75,7 @@ function guessWord() {
             else {
                 console.log("Well done! You guessed correctly!");
                 console.log(currentWord.update());
-                startGame();
+                gameStart();
             }
         });
 }

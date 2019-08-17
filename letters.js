@@ -11,7 +11,7 @@ function Letter(letter) {
         }
     }
 
-    this.checkLetter = function (guess) {
+    this.verifyLetter = function (guess) {
         if (guess === this.letter) {
             this.guessed = true;
         }

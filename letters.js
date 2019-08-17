@@ -12,7 +12,8 @@ function Letter(letter) {
     }
 
     this.verifyLetter = function (guess) {
-        if (guess === this.letter) {
+        if (guess.toUpperCase() === this.letter ||
+            guess.toLowerCase() === this.letter) {
             this.guessed = true;
         }
         else {

@@ -6,6 +6,8 @@ const wordsToGuess = [
     "Djembe", "Didgeridoo", "Vihuela", "Angklung", "Ocarina"
 ];
 
+let chalk = require('chalk');
+
 let numGuesses;
 let chosenLetters;
 let currentWord;
@@ -13,9 +15,9 @@ let chosenWord;
 
 function init() {
     chosenLetters = [];
-    console.log("\n----------------------------------------")
-    console.log("Hello! Welcome to Word Guess: Musical Instruments Around The World Edition");
-    console.log("----------------------------------------\n");
+    console.log(chalk.red("\n---------------------------------------------------------------------"));
+    console.log(chalk.bold.cyan("Hello! Can You Guess These Musical Instruments From Around The World?"));
+    console.log(chalk.red("---------------------------------------------------------------------\n"));
     gameStart();
 }
 
@@ -25,7 +27,6 @@ function gameStart() {
     if (chosenLetters.length < wordsToGuess.length) {
         chosenWord = grabWord();
     }
-    // if won
     else {
         console.log("Well done! You know a lot of instruments!");
         continuePrompt();
@@ -54,7 +55,7 @@ function guessWord() {
     inquirer.prompt([
         {
             name: "letterGuessed",
-            message: currentWord.update() + "\nGuess a letter!" + "\nRemaining Guesses: " + numGuesses
+            message: currentWord.update() + (chalk.bold.yellow("\nGuess a letter!") + (chalk.bold.yellow("\nRemaining Guesses: ")) + (chalk.red(numGuesses)))
         }
     ])
         .then(data => {
@@ -65,7 +66,9 @@ function guessWord() {
             if (numGuesses > 0 && updateLetter.indexOf("_") !== -1) {
                 numGuesses--;
                 if (numGuesses === 0) {
-                    console.log("Out of guesses! Better luck next time!");
+                    console.log(chalk.red("\n----------------------------------------"));
+                    console.log(chalk.bold.cyan("Out of guesses!" + " Better luck next time!"));
+                    console.log(chalk.red("----------------------------------------\n"));
                     continuePrompt();
                 }
                 else {
@@ -73,7 +76,9 @@ function guessWord() {
                 }
             }
             else {
-                console.log("Well done! You guessed correctly!");
+                console.log(chalk.red("\n----------------------------------------"));
+                console.log(chalk.bold.cyan("Well done! You guessed correctly!"));
+                console.log(chalk.red("----------------------------------------\n"));
                 console.log(currentWord.update());
                 gameStart();
             }
@@ -94,7 +99,9 @@ function continuePrompt() {
                 init();
             }
             else {
-                console.log("Thanks for playing!");
+                console.log(chalk.red("\n----------------------------"));
+                console.log(chalk.bold.cyan("Thanks for playing!"));
+                console.log(chalk.red("----------------------------\n"));
             }
         });
 }

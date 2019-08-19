@@ -1,4 +1,4 @@
-# Musical Instruments Around the World *(MIAW)
+# Musical Instruments Around the World *(MIAW)*
 
 *[MIAW Demo](https://drive.google.com/file/d/1GPRhNOpB7aZVCvgzGQzLf0aH9wp3Rmi6/view)*
 

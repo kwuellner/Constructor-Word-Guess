@@ -54,8 +54,11 @@ function guessWord() {
     let updateLetter = [];
     inquirer.prompt([
         {
+            type: "input",
             name: "letterGuessed",
-            message: currentWord.update() + (chalk.bold.yellow("\nGuess a letter!") + (chalk.bold.yellow("\nRemaining Guesses: ")) + (chalk.red(numGuesses)))
+            message: currentWord.update() + (chalk.bold.yellow("\nGuess a letter!") + (chalk.bold.yellow("\n\nRemaining Guesses: ")) + (chalk.red(numGuesses)) + (chalk.bold.yellow("\nLetter Guessed: " + updateLetter.join("")))
+
+            )
         }
     ])
         .then(data => {
@@ -63,13 +66,17 @@ function guessWord() {
                 letter.verifyLetter(data.letterGuessed);
                 updateLetter.push(letter.showLetter());
             });
+
             if (numGuesses > 0 && updateLetter.indexOf("_") !== -1) {
                 numGuesses--;
+
                 if (numGuesses === 0) {
                     console.log(chalk.red("\n----------------------------------------"));
-                    console.log(chalk.bold.cyan("Out of guesses!" + " Better luck next time!"));
+                    console.log(chalk.bold.cyan("Out of guesses! The correct answer was " + chosenWord));
                     console.log(chalk.red("----------------------------------------\n"));
                     continuePrompt();
+
+
                 }
                 else {
                     guessWord();
@@ -77,10 +84,9 @@ function guessWord() {
             }
             else {
                 console.log(chalk.red("\n----------------------------------------"));
-                console.log(chalk.bold.cyan("Well done! You guessed correctly!"));
+                console.log(chalk.bold.cyan("Well done! " + chosenWord + " was correct!"));
                 console.log(chalk.red("----------------------------------------\n"));
-                console.log(currentWord.update());
-                gameStart();
+                continuePrompt();
             }
         });
 }
@@ -90,7 +96,7 @@ function continuePrompt() {
         {
             name: "continue",
             type: "list",
-            message: "Try again?",
+            message: "\nWould you like to go another round?",
             choices: ["Yes", "No"]
         }
     ])

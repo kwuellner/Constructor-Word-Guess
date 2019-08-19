@@ -1,6 +1,6 @@
 # Musical Instruments Around the World *(MIAW)*
 
-*[MIAW Demo](https://drive.google.com/file/d/1GPRhNOpB7aZVCvgzGQzLf0aH9wp3Rmi6/view)*
+*[MIAW Demo](https://drive.google.com/file/d/1GPRhNOpB7aZVCvgzGQzLf0aH9wp3Rmi6/view){:target="_blank"}*
 
 ## About
 *MIAW* is a constructor based game that similar to Wheel Of Fortune and Hangman. See if you can guess the instrument before you run out of guesses!
